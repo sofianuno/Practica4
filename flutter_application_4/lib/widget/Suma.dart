@@ -1,0 +1,83 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
+
+class Suma extends StatefulWidget {
+  const Suma({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return body();
+  }
+}
+
+void sumar() {}
+
+class body extends State<Suma> {
+  final n1 = TextEditingController();
+  final n2 = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: EdgeInsetsGeometry.all(15),
+          child: Card(
+            elevation: 18,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(5),
+            ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(width: double.infinity),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextField(
+                        controller: n1,
+                        keyboardType: TextInputType.number, // Teclado numérico
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                        ],
+                        decoration: InputDecoration(
+                          labelText: 'Escribe un numero',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextField(
+                        controller: n2,
+                        keyboardType: TextInputType.number, // Teclado numérico
+                        inputFormatters: [
+                          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                        ],
+                        decoration: InputDecoration(
+                          labelText: 'Escribe el segundo numero',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: sumar,
+                        child: Text('Sumar'),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
