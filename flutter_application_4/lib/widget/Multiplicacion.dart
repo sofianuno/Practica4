@@ -11,8 +11,6 @@ class Multiplicacion extends StatefulWidget {
   }
 }
 
-void multiplicar() {}
-
 class body extends State<Multiplicacion> {
   final n1 = TextEditingController();
   final n2 = TextEditingController();
@@ -66,7 +64,7 @@ class body extends State<Multiplicacion> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: multiplicar,
+                        onPressed: Multiplicar,
                         child: Text('Multiplicar'),
                       ),
                     ),
@@ -77,6 +75,30 @@ class body extends State<Multiplicacion> {
           ),
         ),
       ),
+    );
+  }
+
+  void Multiplicar() {
+    // Convierte los textos a enteros
+    final num1 = int.tryParse(n1.text) ?? 0;
+    final num2 = int.tryParse(n2.text) ?? 0;
+    // Realiza la resta
+    final resultado = num1 * num2;
+    // Muestra el resultado en un AlertDialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Resultado de la multiplicacion"),
+          content: Text("El resultado de $num1 * $num2 es: $resultado"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), // Cierra el diálogo
+              child: const Text("Cerrar"),
+            ),
+          ],
+        );
+      },
     );
   }
 }

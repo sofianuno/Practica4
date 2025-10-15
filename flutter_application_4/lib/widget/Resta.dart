@@ -11,8 +11,6 @@ class Resta extends StatefulWidget {
   }
 }
 
-void restar() {}
-
 class body extends State<Resta> {
   final n1 = TextEditingController();
   final n2 = TextEditingController();
@@ -77,6 +75,30 @@ class body extends State<Resta> {
           ),
         ),
       ),
+    );
+  }
+
+  void restar() {
+    // Convierte los textos a enteros
+    final num1 = int.tryParse(n1.text) ?? 0;
+    final num2 = int.tryParse(n2.text) ?? 0;
+    // Realiza la resta
+    final resultado = num1 - num2;
+    // Muestra el resultado en un AlertDialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Resultado de la Resta"),
+          content: Text("El resultado de $num1 - $num2 es: $resultado"),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), // Cierra el diálogo
+              child: const Text("Cerrar"),
+            ),
+          ],
+        );
+      },
     );
   }
 }
